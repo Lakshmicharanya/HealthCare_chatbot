@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Appointment</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="appointment-container">
+
+    <h2>Book Appointment</h2>
+
+    <form method="POST">
+
+        <label>Select Doctor</label>
+
+        <select name="doctor_id" required>
+
+            <option value="">Select Doctor</option>
+
+            {% for doctor in doctors %}
+
+            <option value="{{ doctor.doctor_id }}">
+                Dr. {{ doctor.doctor_name }} -
+                {{ doctor.specialization }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <label>Appointment Date</label>
+
+        <input
+            type="date"
+            name="appointment_date"
+            required
+        >
+
+
+        <label>Appointment Time</label>
+
+        <input
+            type="time"
+            name="appointment_time"
+            required
+        >
+
+
+        <button type="submit">
+            Book Appointment
+        </button>
+
+    </form>
+
+
+    <a href="{{ url_for('chat') }}">
+        Back to Chat
+    </a>
+
+</div>
+
+</body>
+</html>

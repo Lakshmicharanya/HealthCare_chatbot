@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Healthcare Chatbot</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <div class="chat-header">
+
+        <div>
+            <h2>Healthcare Chatbot</h2>
+            <p>Welcome, {{ name }}</p>
+        </div>
+
+        <div>
+            <a href="{{ url_for('appointments') }}"
+               class="appointment-link">
+                My Appointments
+            </a>
+
+            <a href="{{ url_for('logout') }}"
+               class="logout">
+                Logout
+            </a>
+        </div>
+
+    </div>
+
+
+    <div class="warning">
+
+        <strong>Important:</strong>
+
+        This chatbot provides general health information only.
+        It does not provide medical diagnosis.
+
+        For emergencies or serious symptoms,
+        seek professional medical help.
+
+    </div>
+
+
+    <div id="chat-box">
+
+        {% for chat in history %}
+
+        <div class="message user-message">
+
+            <strong>You:</strong>
+            {{ chat.user_message }}
+
+        </div>
+
+
+        <div class="message bot-message">
+
+            <strong>Bot:</strong>
+
+            <span>{{ chat.bot_response }}</span>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="input-area">
+
+        <input
+            type="text"
+            id="message"
+            placeholder="Describe your symptoms..."
+        >
+
+        <button onclick="sendMessage()">
+            Send
+        </button>
+
+    </div>
+
+
+    <div class="appointment-button">
+
+        <a href="{{ url_for('book_appointment') }}">
+            Book Appointment
+        </a>
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
